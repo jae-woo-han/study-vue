@@ -18,11 +18,11 @@ export default {
   created() {
     axios.get('http://localhost:30000/api/board')
         .then(async res=>{
-          const resData = await res.data
-          console.log(resData)
-          this.post = resData;
+          this.post = await res.data;
         })
-        .catch()
+        .catch(err=>{
+          alert(err);
+        })
   }
 }
 </script>
