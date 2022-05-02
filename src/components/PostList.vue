@@ -21,19 +21,19 @@
     <div>
       <div class="page-nav">
         <button >
-          <i class="fa-solid fa-angles-left"></i>
+          <font-awesome-icon icon="fa-solid fa-angles-left" />
         </button>
         <button >
-          <i class="fa-solid fa-angle-left"></i>
+          <font-awesome-icon icon="fa-solid fa-angle-left"/>
         </button>
         <div class="page-nav__list">
           <button></button>
         </div>
         <button>
-          <i class="fa-solid fa-angle-right"></i>
+          <font-awesome-icon icon="fa-solid fa-angle-right"></font-awesome-icon>
         </button>
         <button>
-          <i class="fa-solid fa-angles-right"></i>
+          <font-awesome-icon icon="fa-solid fa-angles-right"></font-awesome-icon>
         </button>
       </div>
     </div>
