@@ -1,8 +1,8 @@
 <template>
   <div class="board">
     <header>게시판 - 목록</header>
-    <SearchForm msg="Welcome to Your Vue.js App"/>
-    <PostList />
+    <SearchForm v-bind:search-data="searchData"/>
+    <PostList v-bind:paging="paging" v-bind:post-list="postList"/>
   </div>
 </template>
 
@@ -15,6 +15,16 @@ export default {
   components:{
     SearchForm,
     PostList
+  },
+  data(){
+    return{
+      postList:[],
+      paging:{},
+      searchData:{}
+    }
+  },
+  created() {
+
   }
 }
 </script>

@@ -45,7 +45,8 @@
 
 <script>
 export default {
-  name: "PostList"
+  name: "PostList",
+  props:['postList','paging']
 }
 </script>
 
