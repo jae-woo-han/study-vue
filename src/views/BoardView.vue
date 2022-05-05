@@ -45,7 +45,7 @@ export default {
       categoryList:[]
     }
   },
-  beforeCreate() {
+  created() {
     axios.get('http://localhost:30000/api/category')
         .then(async res => {
           this.categoryList = await res.data;
