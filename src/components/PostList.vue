@@ -1,8 +1,7 @@
 <template>
   <main>
     <div>
-      <span>게시글 수 : </span>
-      <span >검색 게시글 수 넣을자리</span>
+      <span>게시글 수 : {{paging.totalCount}}</span>
     </div>
     <div>
       <div class="flex-container flex-container--column">
@@ -15,24 +14,35 @@
           <div class="flex-container__row-item--date">등록일시</div>
           <div class="flex-container__row-item--date">수정일시</div>
         </div>
-
+        <div class="flex-container__row" v-for="post in postList">
+          <div class="flex-container__row-item--category">{{post.categoryName}}</div>
+          <div class="flex-container__row-item--file">{{post.fileCount}}</div>
+          <router-link v-bind:to="`/post/${post.postId}`"  class="flex-container__row-item--title">{{post.title}}</router-link>
+          <div class="flex-container__row-item--writer">{{post.writer}}</div>
+          <div class="flex-container__row-item--count">post.viewCount</div>
+          <div class="flex-container__row-item--date">{{post.writeDt}}</div>
+          <div class="flex-container__row-item--date">{{post.updateDt}}</div>
+        </div>
       </div>
     </div>
     <div>
       <div class="page-nav">
-        <button >
+        <button v-on:click="movePage(1)">
           <font-awesome-icon icon="fa-solid fa-angles-left" />
         </button>
-        <button >
+        <button v-on:click="movePage(1)">
           <font-awesome-icon icon="fa-solid fa-angle-left"/>
         </button>
         <div class="page-nav__list">
-          <button></button>
+          <button
+              v-for="num in paging.totalPage"
+              v-on:click="movePage(num)"
+          >{{num}}</button>
         </div>
-        <button>
+        <button v-on:click="movePage(paging.totalPage)">
           <font-awesome-icon icon="fa-solid fa-angle-right"></font-awesome-icon>
         </button>
-        <button>
+        <button v-on:click="movePage(paging.totalPage)">
           <font-awesome-icon icon="fa-solid fa-angles-right"></font-awesome-icon>
         </button>
       </div>
@@ -44,9 +54,30 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "PostList",
-  props:['postList','paging']
+  props:['paging','searchData'],
+  data(){
+    return{
+      postList:[]
+    }
+  },
+  created() {
+    this.movePage(1)
+  },
+  methods:{
+    movePage: function (pageNum){
+      axios.get(`http://localhost:30000/api/page/${pageNum}`)
+          .then(async res=>{
+            this.postList = await res.data;
+          })
+          .catch(err => {
+            alert(err);
+          })
+    }
+  }
 }
 </script>
 

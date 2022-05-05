@@ -1,30 +1,67 @@
 <template>
   <div class="board">
     <header>게시판 - 목록</header>
-    <SearchForm v-bind:search-data="searchData"/>
-    <PostList v-bind:paging="paging" v-bind:post-list="postList"/>
+    <div>
+      <form action="" method="get" id="searchForm">
+        등록일
+        <input type="date" name="fromDt">
+        <input type="date" name="toDt">
+        <select name="categoryId">
+          <option value="0"></option>
+          <option v-for="category in categoryList"
+                  v-bind:key="category.categoryId"
+                  v-bind:value="category.categoryId">
+            {{ category.categoryName }}
+          </option>
+        </select>
+        <input type="text" name="searchMessage">
+        <input type="hidden" name="start" id="start" value="0">
+        <input type="button">
+      </form>
+    </div>
+    <PostList v-bind:paging="paging" v-bind:search-data="searchData"/>
   </div>
 </template>
 
 <script>
-import SearchForm from "@/components/SearchForm";
 import PostList from "@/components/PostList";
+import axios from "axios";
 
 export default {
   name: "BoardView",
-  components:{
-    SearchForm,
+  components: {
     PostList
   },
-  data(){
-    return{
-      postList:[],
-      paging:{},
-      searchData:{}
+  data() {
+    return {
+      postList: [],
+      paging: {},
+      searchData: {
+        fromDt:"",
+        toDt:"",
+        categoryId:"",
+        searchMessage:""
+      },
+      categoryList:[]
     }
   },
-  created() {
-
+  beforeCreate() {
+    axios.get('http://localhost:30000/api/category')
+        .then(async res => {
+          this.categoryList = await res.data;
+        })
+        .catch(err => {
+          alert(err);
+        }),
+    axios.get("http://localhost:30000/api/page",{
+          params:this.searchData
+        })
+        .then(async res => {
+          this.paging = await res.data;
+        })
+        .catch(err => {
+          alert(err+" /api/page");
+        })
   }
 }
 </script>
