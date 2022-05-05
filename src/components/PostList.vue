@@ -16,7 +16,12 @@
         </div>
         <div class="flex-container__row" v-for="post in postList">
           <div class="flex-container__row-item--category">{{post.categoryName}}</div>
-          <div class="flex-container__row-item--file">{{post.fileCount}}</div>
+          <div class="flex-container__row-item--file">
+            <font-awesome-icon
+                icon="fa-solid fa-paperclip"
+                v-if="post.fileCount>0"
+            />
+          </div>
           <router-link v-bind:to="`/post/${post.postId}`"  class="flex-container__row-item--title">{{post.title}}</router-link>
           <div class="flex-container__row-item--writer">{{post.writer}}</div>
           <div class="flex-container__row-item--count">post.viewCount</div>

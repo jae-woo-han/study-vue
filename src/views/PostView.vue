@@ -17,13 +17,7 @@
             {{post.postContent}}
         </pre>
     </div>
-    <div>
-      <ul>
-        <li >
-          <a  />
-        </li>
-      </ul>
-    </div>
+    <FileList/>
     <div>
       댓글
     </div>
