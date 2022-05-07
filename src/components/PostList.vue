@@ -24,7 +24,7 @@
           </div>
           <router-link v-bind:to="`/post/${post.postId}`"  class="flex-container__row-item--title">{{post.title}}</router-link>
           <div class="flex-container__row-item--writer">{{post.writer}}</div>
-          <div class="flex-container__row-item--count">post.viewCount</div>
+          <div class="flex-container__row-item--count">{{post.viewCount}}</div>
           <div class="flex-container__row-item--date">{{post.writeDt}}</div>
           <div class="flex-container__row-item--date">{{post.updateDt}}</div>
         </div>
