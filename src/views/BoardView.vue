@@ -14,7 +14,7 @@
           </option>
         </select>
         <input type="text" name="searchMessage" v-bind:value="searchData.searchMessage">
-        <input type="button" v-on:click="getPaging">
+        <input type="button" v-on:click="getPaging" value="검색">
     </div>
     <PostList v-bind:paging="paging" v-bind:search-data="searchData"/>
   </div>
@@ -44,8 +44,8 @@ export default {
   },
   created() {
     axios.get('http://localhost:30000/api/category')
-        .then(async res => {
-          this.categoryList = await res.data;
+        .then( res => {
+          this.categoryList =  res.data;
         })
         .catch(err => {
           alert(err);
@@ -57,8 +57,8 @@ export default {
       axios.get("http://localhost:30000/api/page",{
         params:this.searchData
       })
-          .then(async res => {
-            this.paging = await res.data;
+          .then( res => {
+            this.paging =  res.data;
           })
           .catch(err => {
             alert(err+" /api/page");
