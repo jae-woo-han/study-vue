@@ -22,8 +22,8 @@ export default {
   methods:{
     getFileList:function(){
       axios.get(`http://localhost:30000/api${this.$route.path}/file`)
-          .then(async res =>{
-            this.fileList = await res.data;
+          .then( res =>{
+            this.fileList =  res.data;
           })
           .catch(err =>{
             alert(err);
@@ -33,7 +33,7 @@ export default {
       axios.get(`http://localhost:30000/file/${file.fileSeq}`,{
             responseType:"blob"
           })
-          .then(async res =>{
+          .then( res =>{
             const url = window.URL.createObjectURL(new Blob([res.data]));
             const link = document.createElement('a');
             link.href = url;

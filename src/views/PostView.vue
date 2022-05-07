@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import Post from "@/components/Post";
 import FileList from "@/components/FileList";
 import CommentList from "@/components/CommentList";
 import axios from "axios";
@@ -34,7 +33,6 @@ import axios from "axios";
 export default {
   name: "PostView",
   components:{
-    Post,
     FileList,
     CommentList
   },
@@ -45,8 +43,8 @@ export default {
   },
   created() {
     axios.get(`http://localhost:30000/api${this.$route.path}`)
-        .then(async res =>{
-          this.post = await res.data;
+        .then( res =>{
+          this.post =  res.data;
         })
   }
 }

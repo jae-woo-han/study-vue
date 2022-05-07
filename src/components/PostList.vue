@@ -75,8 +75,8 @@ export default {
   methods:{
     movePage: function (pageNum){
       axios.get(`http://localhost:30000/api/page/${pageNum}`)
-          .then(async res=>{
-            this.postList = await res.data;
+          .then( res=>{
+            this.postList =  res.data;
           })
           .catch(err => {
             alert(err);
