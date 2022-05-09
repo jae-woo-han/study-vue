@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-for="file in fileList" v-on:click="downloadFile(file)">
+    <li v-for="file in fileList" v-on:click="downloadFile(file)" v-bind:key="file.fileSeq">
       {{file.fileName}}.{{file.fileType}}
     </li>
   </ul>
