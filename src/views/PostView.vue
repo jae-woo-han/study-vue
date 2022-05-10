@@ -10,7 +10,7 @@
 
     <div class="flex-container">
       <div >{{post.title}}</div>
-      <div >조회수 post.viewCount</div>
+      <div >조회수 {{post.viewCount}}</div>
     </div>
     <div>
         <pre >

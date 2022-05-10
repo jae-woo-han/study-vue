@@ -1,7 +1,7 @@
 <template>
   <ul>
     <li v-on:click="selectFile()">
-
+      <input type="file" name="file">
     </li>
   </ul>
 </template>
