@@ -15,21 +15,50 @@
       </div>
       <FileList/>
     </main>
+    <footer>
+      <button>취소</button>
+      <button v-on:click="updatePost">저장</button>
+    </footer>
   </div>
 </template>
 
 <script>
+import axios from "axios";
+import router from "@/router";
+
 export default {
   name: "PostUpdateView",
   data() {
     return {
       post: {
+        postId: 0,
         writer: "",
         categoryId: "",
         writeDt: "",
         updateDt: "",
         title: "",
-        postContent: ""
+        postContent: "",
+        viewCount: 0
+      }
+    }
+  },
+  created() {
+    this.getPathParam()
+  },
+  methods: {
+    updatePost: function () {
+      axios.put(`http://localhost:30000/api/post`, this.post)
+          .then(res => {
+            router.push(`/post/${res.data.postId}`);
+          })
+          .catch(err => {
+            alert(err);
+          })
+    },
+    getPathParam: function () {
+      const routeParams = this.$route.params;
+      if (routeParams.id != null) {
+        this.post.postId = routeParams.id
       }
     }
   }

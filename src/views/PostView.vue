@@ -22,6 +22,11 @@
       댓글
     </div>
   </main>
+  <footer>
+    <button v-on:click="pageMove('/board')">목록</button>
+    <button v-on:click="pageMove(`/confirm/update/${post.postId}`)">수정</button>
+    <button v-on:click="pageMove(`/confirm/delete/${post.postId}`)">삭제</button>
+  </footer>
 </div>
 </template>
 
@@ -29,6 +34,7 @@
 import FileList from "@/components/FileList";
 import CommentList from "@/components/CommentList";
 import axios from "axios";
+import router from "@/router";
 
 export default {
   name: "PostView",
@@ -46,6 +52,11 @@ export default {
         .then( res =>{
           this.post =  res.data;
         })
+  },
+  methods:{
+    pageMove:function(path){
+      router.push(path);
+    }
   }
 }
 </script>

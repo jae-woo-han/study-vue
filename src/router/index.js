@@ -4,6 +4,7 @@ import BoardView from "@/views/BoardView";
 import PostView from "@/views/PostView";
 import WritePostView from "@/views/WritePostView";
 import PasswordConfirmView from "@/views/PasswordConfirmView";
+import PostUpdateView from "@/views/PostUpdateView";
 
 Vue.use(VueRouter)
 
@@ -19,7 +20,7 @@ const routes = [
     component: WritePostView
   },
   {
-    path: '/confirm/:method',
+    path: '/confirm/:method/:id',
     name: 'passwordConfirm',
     component: PasswordConfirmView
   },
@@ -27,6 +28,11 @@ const routes = [
     path:'/post/:id',
     name:'post',
     component:PostView
+  },
+  {
+    path:'/update/:id',
+    name:'updatePost',
+    component:PostUpdateView
   }
 ]
 
