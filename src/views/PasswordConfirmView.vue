@@ -27,7 +27,7 @@ export default {
           .then(res=>{
             if(res.data){
               const methodParam = this.$route.params.method;
-              (methodParam == 'update'?
+              (methodParam === 'update'?
                   this.pageMove(`/update/${this.$route.params.id}`):
                   this.deletePost());
             }else{
@@ -44,8 +44,9 @@ export default {
             if(res.data){
               alert("삭제 성공");
               router.push("/board")
+            }else{
+              alert("삭제 실패");
             }
-            alert("삭제 실패");
           })
           .catch(err =>{
             alert(err);
