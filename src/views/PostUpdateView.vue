@@ -6,14 +6,12 @@
       <div>수정일시 {{ post.updateDt }}</div>
       <div>조회수 {{ post.viewCount }}</div>
       <div>작성자 <input type="text" name="writer" v-model:value="post.writer"></div>
-      <div>비밀번호 <input type="password" name="password"></div>
+      <div>비밀번호 <input type="password" name="password" v-model:value="form.password"></div>
       <div>제목 <input type="text" name="title" v-model:value="post.title"></div>
       <div>
-        <textarea name="postContent">
-            {{ post.postContent }}
+        <textarea name="postContent" v-model="post.postContent">
         </textarea>
       </div>
-      <FileList/>
     </main>
     <footer>
       <button>취소</button>
@@ -39,6 +37,13 @@ export default {
         title: "",
         postContent: "",
         viewCount: 0
+      },
+      form:{
+        postId:"",
+        writer:"",
+        password:"",
+        title:"",
+        postContent:""
       }
     }
   },
@@ -47,7 +52,12 @@ export default {
   },
   methods: {
     updatePost: function () {
-      axios.put(`http://localhost:30000/api/post`, this.post)
+      this.form.postId = this.post.postId;
+      this.form.writer = this.post.writer;
+      this.form.title = this.post.title;
+      this.form.postContent = this.post.postContent;
+
+      axios.put(`http://localhost:30000/api/post`, this.form)
           .then(res => {
             router.push(`/post/${res.data.postId}`);
           })
@@ -57,9 +67,17 @@ export default {
     },
     getPathParam: function () {
       const routeParams = this.$route.params;
-      if (routeParams.id != null) {
-        this.post.postId = routeParams.id
+      const postId = routeParams.id;
+      if (postId != null) {
+        this.post.postId = postId;
+        this.getPost(postId)
       }
+    },
+    getPost: function(postId){
+      axios.get(`http://localhost:30000/api/post/${postId}`)
+          .then( res =>{
+            this.post =  res.data;
+          })
     }
   }
 }

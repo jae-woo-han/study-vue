@@ -17,12 +17,16 @@
         <input type="button" v-on:click="getPaging" value="검색">
     </div>
     <PostList v-bind:paging="paging" v-bind:search-data="searchData"/>
+    <div class="flex-container flex-container--align-right">
+      <router-link to="/write">등록</router-link>
+    </div>
   </div>
 </template>
 
 <script>
 import PostList from "@/components/PostList";
 import axios from "axios";
+import {getCategoryList} from "@/service/api/BoardService";
 
 export default {
   name: "BoardView",
@@ -43,13 +47,9 @@ export default {
     }
   },
   created() {
-    axios.get('http://localhost:30000/api/category')
-        .then( res => {
-          this.categoryList =  res.data;
-        })
-        .catch(err => {
-          alert(err);
-        }),
+    this.getCategoryList().then(res=>{
+      this.categoryList = res.data.data;
+    }),
     this.getPaging()
   },
   methods:{
@@ -58,12 +58,13 @@ export default {
         params:this.searchData
       })
           .then( res => {
-            this.paging =  res.data;
+            this.paging =  res.data.data;
           })
           .catch(err => {
             alert(err+" /api/page");
           })
-    }
+    },
+    getCategoryList
   }
 }
 </script>

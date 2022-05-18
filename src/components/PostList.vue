@@ -52,9 +52,6 @@
         </button>
       </div>
     </div>
-    <div class="flex-container flex-container--align-right">
-      <a >등록</a>
-    </div>
   </main>
 </template>
 

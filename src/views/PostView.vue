@@ -48,9 +48,9 @@ export default {
     }
   },
   created() {
-    axios.get(`http://localhost:30000/api${this.$route.path}`)
+    axios.get(`http://localhost:30000/api${this.$route.path}/view`)
         .then( res =>{
-          this.post =  res.data;
+          this.post =  res.data.data;
         })
   },
   methods:{
