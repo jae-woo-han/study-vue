@@ -9,6 +9,11 @@
 <script>
 export default {
   name: "FileForm",
+  data(){
+    return {
+      files:[]
+    }
+  },
   methods:{
     selectFile:function(){
 
