@@ -76,7 +76,7 @@ export default {
     getPost: function(postId){
       axios.get(`http://localhost:30000/api/post/${postId}`)
           .then( res =>{
-            this.post =  res.data;
+            this.post =  res.data.data;
           })
     }
   }
