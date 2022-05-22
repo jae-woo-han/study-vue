@@ -1,8 +1,4 @@
-import axios from "axios";
-
-const axiosInstance = axios.create({
-    baseURL:'http://localhost:30000'
-});
+import {axiosInstance} from "@/service/api/apiConfig";
 
 export const getCategoryList = ()=>{
     return axiosInstance.get('/api/category');
