@@ -25,7 +25,7 @@
         <textarea name="postContent" v-model="postForm.postContent"/>
       </div>
       <div>
-        <FileForm/>
+        <FileForm v-bind:post-id="postForm.postId"/>
       </div>
     </main>
     <footer>
@@ -74,6 +74,7 @@ export default {
             const responseMessage = res.data.resultMessage;
             if (responseMessage === '성공') {
               const responseData = res.data.data;
+              this.postForm.postId = responseData.postId;
               router.push(`/post/${responseData.postId}`);
             } else {
               alert(responseMessage);

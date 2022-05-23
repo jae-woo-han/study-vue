@@ -12,6 +12,9 @@
         <textarea name="postContent" v-model="post.postContent">
         </textarea>
       </div>
+      <div>
+        <FileForm v-bind:post-id="form.postId"/>
+      </div>
     </main>
     <footer>
       <button>취소</button>
@@ -23,9 +26,13 @@
 <script>
 import axios from "axios";
 import router from "@/router";
+import FileForm from "@/components/FileForm";
 
 export default {
   name: "PostUpdateView",
+  components: {
+    FileForm
+  },
   data() {
     return {
       post: {

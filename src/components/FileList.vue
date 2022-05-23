@@ -41,6 +41,7 @@ export default {
             link.setAttribute('download',filename);
             document.body.appendChild(link);
             link.click();
+            link.remove();
           })
           .catch(err =>{
             alert(err);
