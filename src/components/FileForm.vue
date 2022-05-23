@@ -12,6 +12,7 @@
 
 <script>
 import {filesUpload} from "@/service/api/fileService";
+import router from "@/router";
 
 export default {
   name: "FileForm",
@@ -26,6 +27,7 @@ export default {
       filesUpload(this.files, postId)
           .then(res =>{
             console.log(res.data.data);
+            router.push(`/post/${postId}`);
           })
           .catch(err=>{
             alert(err);

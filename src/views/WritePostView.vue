@@ -75,7 +75,7 @@ export default {
             if (responseMessage === '성공') {
               const responseData = res.data.data;
               this.postForm.postId = responseData.postId;
-              router.push(`/post/${responseData.postId}`);
+
             } else {
               alert(responseMessage);
             }
