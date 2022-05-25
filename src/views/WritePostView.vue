@@ -25,7 +25,7 @@
         <textarea name="postContent" v-model="postForm.postContent"/>
       </div>
       <div>
-        <FileForm v-bind:post-id="postForm.postId"/>
+        <FileForm v-bind:id="postForm.postId" v-bind:is-submit="isSubmit"/>
       </div>
     </main>
     <footer>
@@ -58,7 +58,8 @@ export default {
         passwordConfirm: ""
       },
       files: [],
-      categoryList: []
+      categoryList: [],
+      isSubmit:false
     }
   },
   created() {
@@ -75,6 +76,7 @@ export default {
             if (responseMessage === '성공') {
               const responseData = res.data.data;
               this.postForm.postId = responseData.postId;
+              this.isSubmit = true;
 
             } else {
               alert(responseMessage);

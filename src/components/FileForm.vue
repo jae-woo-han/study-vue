@@ -1,8 +1,8 @@
 <template>
   <div>
     <ul>
-      <li v-for="file in files">
-        <span>{{file.name}}</span>
+      <li v-for="file in fileList">
+        <span>{{ file.name }}</span>
         <button v-on:click="selectFile()">파일 선택</button>
       </li>
     </ul>
@@ -11,38 +11,60 @@
 </template>
 
 <script>
-import {filesUpload} from "@/service/api/fileService";
+import {filesUpload, getFileList} from "@/service/api/fileService";
 import router from "@/router";
 
 export default {
   name: "FileForm",
-  props:["postId"],
-  data(){
+  props: ["id","isSubmit"],
+  data() {
     return {
-      files:[]
+      files: [],
+      oldFiles:[]
     }
   },
-  watch:{
-    "postId": function(postId){
-      filesUpload(this.files, postId)
-          .then(res =>{
+  created() {
+    this.getFileList(this.id)
+        .then(res=>{
+          this.oldFiles = res.data;
+        })
+        .catch(err=>{
+          alert(err);
+        })
+  },
+  computed:{
+    fileList: function(){
+      return this.files.concat(this.oldFiles
+          .map(item=>{
+              item.name = item.fileName+"."+item.fileType
+              return item;
+              }
+          ));
+    }
+  },
+  watch: {
+    "isSubmit": function (isSubmit) {
+      if(!isSubmit) return false;
+      filesUpload(this.files, this.id)
+          .then(res => {
             console.log(res.data.data);
-            router.push(`/post/${postId}`);
+            router.push(`/post/${this.id}`);
           })
-          .catch(err=>{
+          .catch(err => {
             alert(err);
           })
     }
   },
-  methods:{
-    selectFile:function(){
+  methods: {
+    selectFile: function () {
 
     },
-    addFile:function(event){
+    addFile: function (event) {
       let fileList = event.target.files;
       this.files.push(fileList.item(0));
     },
-    filesUpload
+    filesUpload,
+    getFileList
   }
 }
 </script>

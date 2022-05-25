@@ -13,11 +13,11 @@
         </textarea>
       </div>
       <div>
-        <FileForm v-bind:post-id="form.postId"/>
+        <FileForm v-bind:id="post.postId" v-bind:is-submit="isSubmit"/>
       </div>
     </main>
     <footer>
-      <button>취소</button>
+      <button v-on:click="movePostPage">취소</button>
       <button v-on:click="updatePost">저장</button>
     </footer>
   </div>
@@ -51,7 +51,8 @@ export default {
         password:"",
         title:"",
         postContent:""
-      }
+      },
+      isSubmit:false
     }
   },
   created() {
@@ -66,7 +67,8 @@ export default {
 
       axios.put(`http://localhost:30000/api/post`, this.form)
           .then(res => {
-            router.push(`/post/${res.data.postId}`);
+            //router.push(`/post/${res.data.postId}`);
+            this.isSubmit = true;
           })
           .catch(err => {
             alert(err);
@@ -85,6 +87,13 @@ export default {
           .then( res =>{
             this.post =  res.data.data;
           })
+    },
+    movePostPage: function () {
+      if (confirm('작성을 취소하시겠습니까')) {
+        router.push(`/post/${this.post.postId}`);
+      } else {
+        return false;
+      }
     }
   }
 }
