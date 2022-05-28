@@ -5,11 +5,11 @@
       <div>등록일시 {{ post.writeDt }}</div>
       <div>수정일시 {{ post.updateDt }}</div>
       <div>조회수 {{ post.viewCount }}</div>
-      <div>작성자 <input type="text" name="writer" v-model:value="post.writer"></div>
-      <div>비밀번호 <input type="password" name="password" v-model:value="form.password"></div>
-      <div>제목 <input type="text" name="title" v-model:value="post.title"></div>
+      <div>작성자 <input type="text" v-model:value="post.writer"></div>
+      <div>비밀번호 <input type="password" v-model:value="form.password"></div>
+      <div>제목 <input type="text" v-model:value="post.title"></div>
       <div>
-        <textarea name="postContent" v-model="post.postContent">
+        <textarea v-model="post.postContent">
         </textarea>
       </div>
       <div>

@@ -2,7 +2,7 @@
   <div>
     <main class="flex-container flex-container--column">
       <div>
-        <select name="categoryId" v-model="postForm.categoryId">
+        <select v-model="postForm.categoryId">
           <option value="0"></option>
           <option v-for="category in categoryList"
                   v-bind:key="category.categoryId"
@@ -12,17 +12,17 @@
         </select>
       </div>
       <div>
-        <input type="text" name="writer" v-model:value="postForm.writer">
+        <input type="text" v-model:value="postForm.writer">
       </div>
       <div>
-        <input type="password" name="password" v-model:value="postForm.password">
-        <input type="password" name="passwordConfirm" v-model:value="postForm.passwordConfirm">
+        <input type="password" v-model:value="postForm.password">
+        <input type="password" v-model:value="postForm.passwordConfirm">
       </div>
       <div>
-        <input type="text" name="title" v-model:value="postForm.title">
+        <input type="text" v-model:value="postForm.title">
       </div>
       <div>
-        <textarea name="postContent" v-model="postForm.postContent"/>
+        <textarea v-model="postForm.postContent"/>
       </div>
       <div>
         <FileForm v-bind:id="postForm.postId" v-bind:is-submit="isSubmit"/>

@@ -6,7 +6,7 @@
 
       </li>
     </ul>
-    <input type="file" name="file" v-on:change="addFile">
+    <input type="file" v-on:change="addFile">
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       files: [],
-      oldFiles:[]
+      oldFiles:[]//변수 명 마음에 안들음
     }
   },
   created() {

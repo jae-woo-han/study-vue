@@ -1,6 +1,6 @@
 <template>
   <main>
-    <input type="password" name="passwordConfirm" v-model:value="passwordConfirm">
+    <input type="password" v-model:value="passwordConfirm">
     <button v-on:click="pageMove(`/post/${$route.params.id}`)">취소</button>
     <button v-on:click="passwordCheck()">확인</button>
   </main>
