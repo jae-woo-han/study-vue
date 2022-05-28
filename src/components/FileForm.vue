@@ -3,7 +3,7 @@
     <ul>
       <li v-for="file in fileList">
         <span>{{ file.name }}</span>
-        <button v-on:click="selectFile()">파일 선택</button>
+
       </li>
     </ul>
     <input type="file" name="file" v-on:change="addFile">
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import {filesUpload, getFileList} from "@/service/api/fileService";
+import {filesUpload, getFileList} from "@/service/api/FileService";
 import router from "@/router";
 
 export default {

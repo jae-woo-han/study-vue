@@ -8,7 +8,7 @@
 
 <script>
 import axios from "axios";
-import {getFileList} from "@/service/api/fileService";
+import {getFileList} from "@/service/api/FileService";
 
 export default {
   name: "FileList",
