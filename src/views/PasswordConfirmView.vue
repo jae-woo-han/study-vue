@@ -1,6 +1,6 @@
 <template>
   <main>
-    <input type="password" v-model:value="passwordConfirm">
+    <input type="password" v-model="passwordConfirm">
     <button v-on:click="pageMove(`/post/${$route.params.id}`)">취소</button>
     <button v-on:click="passwordCheck()">확인</button>
   </main>
@@ -22,6 +22,7 @@ export default {
       router.push(path);
     },
     passwordCheck:function(){
+      //TODO : password는 form data parameter로 넘어가게 변경
       axios.post(`http://localhost:30000/api/check/password/${this.$route.params.id}`,
           {passwordConfirm:this.passwordConfirm})
           .then(res=>{

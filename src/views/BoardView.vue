@@ -4,7 +4,7 @@
     <div>
         등록일
         <input type="date" v-bind:value="searchData.fromDt">
-        <input type="date"v-bind:value="searchData.toDt">
+        <input type="date" v-bind:value="searchData.toDt">
         <select v-model="searchData.categoryId">
           <option value="0"></option>
           <option v-for="category in categoryList"
