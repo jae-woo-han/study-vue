@@ -1,9 +1,8 @@
 <template>
   <div>
     <ul>
-      <li v-for="file in fileList">
+      <li v-for="file in fileList" v-bind:key="file.name">
         <span>{{ file.name }}</span>
-
       </li>
     </ul>
     <input type="file" v-on:change="addFile">
