@@ -1,8 +1,8 @@
 <template>
   <ul>
-    <li v-for="file in fileList" @click="downloadFile(file)" v-bind:key="file.key">
+    <li v-for="file in fileList" @click="downloadFile(file)" v-bind:key="file.name">
       {{ file.name }}
-      <font-awesome-icon icon="fa-solid fa-xmark" @click="removeFile(file.key)" v-if="isUpdate"/>
+      <font-awesome-icon icon="fa-solid fa-xmark" @click="removeFile(file)" v-if="isUpdate"/>
     </li>
   </ul>
 </template>
@@ -32,8 +32,8 @@ export default {
             alert(err);
           })
     },
-    removeFile(key){
-        this.$emit("removeFile",key);
+    removeFile(file){
+      this.$emit("removeFile",file);
     }
   }
 }
