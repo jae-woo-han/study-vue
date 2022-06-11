@@ -12,6 +12,7 @@ import axios from "axios";
 
 export default {
   name: "FileListViewer",
+  //prefix 'enable'
   props:["isDownload","isUpdate","fileList"],
   methods: {
     downloadFile: function (file) {
