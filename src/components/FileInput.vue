@@ -10,7 +10,9 @@ export default{
     methods:{
       appendFile: function (event) {
         let fileList = event.target.files;
-        this.$emit("appendFile",fileList.item(0));
+        let file = fileList.item(0);
+        file.isNew = true;  
+        this.$emit("appendFile",file);
       }
     }
 }
