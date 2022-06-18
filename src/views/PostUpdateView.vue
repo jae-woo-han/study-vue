@@ -14,8 +14,8 @@
       </div>
       <div>
         <FileListViewer 
-            v-bind:is-download="isDownload" 
-            v-bind:is-update="isUpdate" 
+            v-bind:enable-download="enableDownload" 
+            v-bind:enable-update="enableUpdate" 
             v-bind:file-list="fileList"
             v-on:removeFile="removeFile"
             />
@@ -65,9 +65,9 @@ export default {
         title:"",
         postContent:""
       },
-      isSubmit:false,
-      isUpdate:true,
-      isDownload:false,
+      enableSubmit:false,
+      enableUpdate:true,
+      enableDownload:false,
       fileList:[],
       newFileList:[],
       existingFileList:[]
@@ -97,7 +97,7 @@ export default {
       axios.put(`http://localhost:30000/api/post`, this.form)
           .then(res => {
             //router.push(`/post/${res.data.postId}`);
-            this.isSubmit = true;
+            this.enableSubmit = true;
           })
           .catch(err => {
             alert(err);

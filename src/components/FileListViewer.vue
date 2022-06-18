@@ -2,7 +2,7 @@
   <ul>
     <li v-for="file in fileList" @click="downloadFile(file)" v-bind:key="file.name">
       {{ file.name }}
-      <font-awesome-icon icon="fa-solid fa-xmark" @click="removeFile(file)" v-if="isUpdate"/>
+      <font-awesome-icon icon="fa-solid fa-xmark" @click="removeFile(file)" v-if="enableUpdate"/>
     </li>
   </ul>
 </template>
@@ -13,7 +13,7 @@ import axios from "axios";
 export default {
   name: "FileListViewer",
   //prefix 'enable'
-  props:["isDownload","isUpdate","fileList"],
+  props:["enableDownload","enableUpdate","fileList"],
   methods: {
     downloadFile: function (file) {
       axios.get(`http://localhost:30000/file/${file.fileSeq}`, {
